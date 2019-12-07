@@ -9,6 +9,6 @@ class Alan : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alan)
 
-        //tugas
+        //tugas ahayyy
     }
 }
