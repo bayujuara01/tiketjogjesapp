@@ -9,6 +9,7 @@ import kotlinx.android.synthetic.main.activity_get_started.*
 
 class GetStartedActivity : AppCompatActivity() {
 
+    //baybayu
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
