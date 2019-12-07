@@ -29,5 +29,4 @@ class GetStartedActivity : AppCompatActivity() {
             startActivity(intent)
         })
     }
-    //by ghoffar
 }
