@@ -10,5 +10,6 @@ class Alan : AppCompatActivity() {
         setContentView(R.layout.activity_alan)
 
         //tugas ahayyy
+        //ghoffar ganteng
     }
 }
