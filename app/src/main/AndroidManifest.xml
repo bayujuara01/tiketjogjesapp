@@ -16,6 +16,8 @@
         android:theme="@style/AppTheme">
         
         <activity android:name=".MyprofilAct"></activity>
+        <activity android:name=".MyTicketDetailAct"></activity>
+        <activity android:name=".EditProfileAct"></activity>
         <activity android:name=".TicketCheckoutActivity" />
         <activity android:name=".TicketDetailActivity" />
         <activity android:name=".HomeActivity" />
