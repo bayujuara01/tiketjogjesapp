@@ -67,7 +67,7 @@
                     android:id="@+id/pict_photo_home_user"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/ghoffar" />
+                    android:src="@drawable/uty2" />
             </com.github.florent37.shapeofview.shapes.CircleView>
 
             <TextView
