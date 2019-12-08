@@ -22,29 +22,32 @@
         android:id="@+id/imageView5"
         android:layout_width="110dp"
         android:layout_height="110dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/icon_nopic"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="150dp"
-        tools:layout_editor_absoluteY="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
         android:fontFamily="@font/montserrat_medium"
         android:text="Bayu"
         android:textColor="#FFF"
         android:textSize="20sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="179dp"
-        tools:layout_editor_absoluteY="142dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="196dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="24dp"
         android:background="@drawable/bg_layout_white"
         android:orientation="vertical"
@@ -52,9 +55,9 @@
         android:paddingRight="24dp"
         android:paddingBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2">
+        app:layout_constraintTop_toTopOf="@+id/textView3">
 
 
         <TextView
@@ -213,27 +216,31 @@
         android:id="@+id/btn_editprofile"
         android:layout_width="330dp"
         android:layout_height="55dp"
+        android:layout_marginTop="26dp"
         android:background="@drawable/bg_btn_blue_primary"
         android:fontFamily="@font/montserrat_medium"
         android:text="Edit Profile"
         android:textColor="@color/whitePrimary"
         android:textSize="22sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="510dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btn_sign_out"
         android:layout_width="330dp"
         android:layout_height="55dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/bg_btn_white_primary"
         android:fontFamily="@font/montserrat_medium"
         android:text="Sign out"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="22sp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="575dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_editprofile"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

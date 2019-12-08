@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var btnTicketPisa: LinearLayout
-    private lateinit var btnprofile: ImageView
+    private lateinit var btnprofile: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
