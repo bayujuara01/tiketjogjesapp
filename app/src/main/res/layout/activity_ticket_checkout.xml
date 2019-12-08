@@ -277,7 +277,7 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_back" />
+            android:src="@drawable/ic_back"/>
 
     </LinearLayout>
 

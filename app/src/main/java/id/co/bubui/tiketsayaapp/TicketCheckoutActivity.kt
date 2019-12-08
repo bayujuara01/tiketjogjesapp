@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.LinearLayout
 import android.widget.TextView
 
 class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var btnTicketPlus: Button
     private lateinit var btnTicketMinus: Button
+    private  lateinit var btnBack : LinearLayout
     private lateinit var tvTicketAmount: TextView
     private lateinit var tvTicketTotalPrice: TextView
 
@@ -26,14 +28,18 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         tvTicketAmount = findViewById(R.id.tv_ticket_amount)
         tvTicketTotalPrice = findViewById(R.id.tv_ticket_total_price)
 
+        btnBack = findViewById(R.id.btn_back)
+
         btnTicketPlus.setOnClickListener(this)
         btnTicketMinus.setOnClickListener(this)
+        btnBack.setOnClickListener(this)
 
         val btnBuyTicket = findViewById<Button>(R.id.btn_buy_ticket_ok)
         btnBuyTicket.setOnClickListener(View.OnClickListener {
             intent = Intent(this, SuccessBuyTicketAct::class.java)
             startActivity(intent)
         })
+
     }
 
     override fun onClick(v: View?) {
@@ -52,6 +58,11 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
                     tvTicketTotalPrice.text = "Rp ${ticketAmount*50}K"
                 }
+            }
+
+            btnBack.id -> {
+                val kembaliIntent = Intent(this, TicketDetailActivity::class.java)
+                startActivity(kembaliIntent)
             }
         }
     }
