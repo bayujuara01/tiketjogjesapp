@@ -29,7 +29,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         tvTicketTotalPrice = findViewById(R.id.tv_ticket_total_price)
 
         btnBack = findViewById(R.id.btn_back)
-
+//
         btnTicketPlus.setOnClickListener(this)
         btnTicketMinus.setOnClickListener(this)
         btnBack.setOnClickListener(this)
