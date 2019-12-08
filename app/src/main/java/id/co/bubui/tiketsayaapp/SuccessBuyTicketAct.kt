@@ -23,6 +23,5 @@ class SuccessBuyTicketAct : AppCompatActivity() {
             intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
         })
-
     }
 }
