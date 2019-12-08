@@ -14,7 +14,7 @@ class SuccessBuyTicketAct : AppCompatActivity() {
 
         val btnViewTicket = findViewById<Button>(R.id.btn_view_ticket)
         btnViewTicket.setOnClickListener(View.OnClickListener {
-            intent = Intent(this, TicketDetailActivity::class.java)
+            intent = Intent(this, MyTicketDetailAct::class.java)
             startActivity(intent)
         })
 
