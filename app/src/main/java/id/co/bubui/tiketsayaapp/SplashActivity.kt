@@ -13,7 +13,8 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var app_splash : Animation
     private lateinit var btt : Animation
     private lateinit var handler: Handler
-
+    private lateinit var app_logo : ImageView
+    private lateinit var app_subtitle : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,8 +23,8 @@ class SplashActivity : AppCompatActivity() {
         app_splash = AnimationUtils.loadAnimation(this, R.anim.app_splash)
         btt = AnimationUtils.loadAnimation(this, R.anim.btt)
         //load element
-        val app_logo = findViewById<ImageView>(R.id.app_logo)
-        val app_subtitle = findViewById<TextView>(R.id.app_subtitle)
+        app_logo = findViewById(R.id.app_logo)
+        app_subtitle = findViewById(R.id.app_subtitle)
 
         app_logo.startAnimation(app_splash)
         app_subtitle.startAnimation(btt)
