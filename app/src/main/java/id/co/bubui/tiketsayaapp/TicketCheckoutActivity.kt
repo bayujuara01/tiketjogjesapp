@@ -1,5 +1,6 @@
 package id.co.bubui.tiketsayaapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -27,6 +28,12 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
         btnTicketPlus.setOnClickListener(this)
         btnTicketMinus.setOnClickListener(this)
+
+        val btnBuyTicket = findViewById<Button>(R.id.btn_buy_ticket_ok)
+        btnBuyTicket.setOnClickListener(View.OnClickListener {
+            intent = Intent(this, SuccessBuyTicketAct::class.java)
+            startActivity(intent)
+        })
     }
 
     override fun onClick(v: View?) {
