@@ -18,8 +18,14 @@ class MyprofilAct : AppCompatActivity() {
 
         btn_edit_profile = findViewById(R.id.btn_editprofile);
         btn_edit_profile.setOnClickListener {
-            val gotoeditprofile=Intent(this,MyTicketDetailAct::class.java)
+            val gotoeditprofile=Intent(this,EditProfileAct::class.java)
             startActivity(gotoeditprofile);
+        }
+
+        item_my_ticket = findViewById(R.id.ticket)
+        item_my_ticket.setOnClickListener{
+            intent = Intent(this, MyTicketDetailAct::class.java)
+            startActivity(intent)
         }
     }
 }
