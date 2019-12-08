@@ -118,11 +118,10 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btn_ticket_plus"
+                    android:id="@+id/btn_ticket_minus"
                     android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginTop="2dp"
-                    android:background="@drawable/btnpls" />
+                    android:layout_height="32dp"
+                    android:background="@drawable/btnmines" />
 
                 <TextView
                     android:id="@+id/tv_ticket_amount"
@@ -136,10 +135,12 @@
                     android:textSize="18sp" />
 
                 <Button
-                    android:id="@+id/btn_ticket_minus"
+                    android:id="@+id/btn_ticket_plus"
                     android:layout_width="25dp"
-                    android:layout_height="32dp"
-                    android:background="@drawable/btnmines" />
+                    android:layout_height="25dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@drawable/btnpls" />
+
             </LinearLayout>
         </LinearLayout>
 
@@ -159,14 +160,14 @@
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/bg_layout_white"
         android:orientation="vertical"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
         android:paddingBottom="16dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -197,12 +198,13 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/totalBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Rp 1000K"
-                android:layout_marginLeft="6dp"
                 android:textColor="@color/bluePrimary"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -232,10 +234,10 @@
                 android:id="@+id/tv_ticket_total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_medium"
                 android:text="Rp 150K"
-                android:layout_marginLeft="50dp"
                 android:textColor="@color/greenPrimary"
                 android:textSize="32sp" />
         </LinearLayout>
@@ -277,8 +279,19 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_back"/>
+            android:src="@drawable/ic_back" />
 
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/notice_uang"
+        android:layout_width="38dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="48dp"
+        android:baselineAligned="false"
+        android:src="@drawable/icon_tidak_cukup_uang"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
