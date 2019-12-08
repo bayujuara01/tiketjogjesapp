@@ -55,15 +55,20 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-            <ImageView
-                android:id="@+id/btn_to_profile"
+            <com.github.florent37.shapeofview.shapes.CircleView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="29dp"
-                android:layout_marginTop="29dp"
-                android:src="@drawable/icon_nopic"
+                android:layout_marginTop="87dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/pict_photo_home_user"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ghoffar" />
+            </com.github.florent37.shapeofview.shapes.CircleView>
 
             <TextView
                 android:id="@+id/textView3"
