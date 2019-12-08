@@ -144,6 +144,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view2" />
 
+    <com.github.florent37.shapeofview.shapes.CircleView>
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:src="@drawable/01"/>
+
+    </com.github.florent37.shapeofview.shapes.CircleView>
+
     <Button
         android:id="@+id/btn_continue"
         android:layout_width="250dp"
