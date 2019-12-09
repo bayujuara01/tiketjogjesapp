@@ -1,6 +1,8 @@
 package id.co.bubui.tiketsayaapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,6 +20,9 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var password: EditText
 
     private lateinit var reference: DatabaseReference
+
+    private var USERNAME_KEY = "username_key"
+    private var username_key = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +42,10 @@ class SignInActivity : AppCompatActivity() {
         //menuju dashboard
         btnSignIn.setOnClickListener(View.OnClickListener {
 
+            // ubah state menjadi loading
+            btnSignIn.isEnabled = false
+            btnSignIn.setText("Loading ...")
+
             val dUsername: String = username.text.toString()
             val dPassword: String = password.text.toString()
 
@@ -55,14 +64,24 @@ class SignInActivity : AppCompatActivity() {
 
                         //validasi password firebase
                         if(dPassword == passwordFromFirebase){
+                            //sharedPReference Username to local
+                            //menyimpan kepada lokal storage/smartphone
+                            val sharedPreferences: SharedPreferences = getSharedPreferences(USERNAME_KEY, Context.MODE_PRIVATE)
+                            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                            editor.putString(username_key, dUsername).apply()
+
                             //berpindah activity
                             val gotoHomeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
                             startActivity(gotoHomeIntent)
                         } else {
+                            btnSignIn.isEnabled = true
+                            btnSignIn.setText("SIGN IN")
                             Toast.makeText(this@SignInActivity, "Password Salah", Toast.LENGTH_SHORT).show()
                         }
 
                     } else {
+                        btnSignIn.isEnabled = true
+                        btnSignIn.setText("SIGN IN")
                         Toast.makeText(this@SignInActivity, "Username atau Password Salah", Toast.LENGTH_SHORT).show()
                     }
                 }
