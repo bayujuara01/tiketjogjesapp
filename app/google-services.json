@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "989886747767-bj6lri7f1cv59v4mifttptfbloomfl9h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.co.bubui.tiketsayaapp",
+            "certificate_hash": "17921681ae3daa1c60b5c060ce9ecbde680f0dd4"
+          }
+        },
+        {
           "client_id": "989886747767-let57322l9uv35o7nfhp6rk1tdnd014b.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

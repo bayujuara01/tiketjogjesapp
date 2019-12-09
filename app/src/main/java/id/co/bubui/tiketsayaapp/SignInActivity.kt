@@ -20,6 +20,8 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var password: EditText
 
     private lateinit var reference: DatabaseReference
+    private var USERNAME_KEY = "username_key"
+    private var username_key = ""
 
     private var USERNAME_KEY = "username_key"
     private var username_key = ""
@@ -64,6 +66,7 @@ class SignInActivity : AppCompatActivity() {
 
                         //validasi password firebase
                         if(dPassword == passwordFromFirebase){
+
                             //sharedPReference Username to local
                             //menyimpan kepada lokal storage/smartphone
                             val sharedPreferences: SharedPreferences = getSharedPreferences(USERNAME_KEY, Context.MODE_PRIVATE)
