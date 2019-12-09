@@ -23,6 +23,9 @@ class SignInActivity : AppCompatActivity() {
     private var USERNAME_KEY = "username_key"
     private var username_key = ""
 
+    private var USERNAME_KEY = "username_key"
+    private var username_key = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -40,6 +43,10 @@ class SignInActivity : AppCompatActivity() {
 
         //menuju dashboard
         btnSignIn.setOnClickListener(View.OnClickListener {
+
+            // ubah state menjadi loading
+            btnSignIn.isEnabled = false
+            btnSignIn.setText("Loading ...")
 
             val dUsername: String = username.text.toString()
             val dPassword: String = password.text.toString()
@@ -59,19 +66,25 @@ class SignInActivity : AppCompatActivity() {
 
                         //validasi password firebase
                         if(dPassword == passwordFromFirebase){
-                            //menyimpan username ke local
+
+                            //sharedPReference Username to local
+                            //menyimpan kepada lokal storage/smartphone
                             val sharedPreferences: SharedPreferences = getSharedPreferences(USERNAME_KEY, Context.MODE_PRIVATE)
                             val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                            editor.putString(username_key, username.text.toString()).apply()
+                            editor.putString(username_key, dUsername).apply()
 
                             //berpindah activity
                             val gotoHomeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
                             startActivity(gotoHomeIntent)
                         } else {
+                            btnSignIn.isEnabled = true
+                            btnSignIn.setText("SIGN IN")
                             Toast.makeText(this@SignInActivity, "Password Salah", Toast.LENGTH_SHORT).show()
                         }
 
                     } else {
+                        btnSignIn.isEnabled = true
+                        btnSignIn.setText("SIGN IN")
                         Toast.makeText(this@SignInActivity, "Username atau Password Salah", Toast.LENGTH_SHORT).show()
                     }
                 }
