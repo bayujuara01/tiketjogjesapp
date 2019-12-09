@@ -1,6 +1,8 @@
 package id.co.bubui.tiketsayaapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -18,6 +20,8 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var password: EditText
 
     private lateinit var reference: DatabaseReference
+    private var USERNAME_KEY = "username_key"
+    private var username_key = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +59,11 @@ class SignInActivity : AppCompatActivity() {
 
                         //validasi password firebase
                         if(dPassword == passwordFromFirebase){
+                            //menyimpan username ke local
+                            val sharedPreferences: SharedPreferences = getSharedPreferences(USERNAME_KEY, Context.MODE_PRIVATE)
+                            val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                            editor.putString(username_key, username.text.toString()).apply()
+
                             //berpindah activity
                             val gotoHomeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
                             startActivity(gotoHomeIntent)
