@@ -23,9 +23,6 @@ class SignInActivity : AppCompatActivity() {
     private var USERNAME_KEY = "username_key"
     private var username_key = ""
 
-    private var USERNAME_KEY = "username_key"
-    private var username_key = ""
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -51,48 +48,61 @@ class SignInActivity : AppCompatActivity() {
             val dUsername: String = username.text.toString()
             val dPassword: String = password.text.toString()
 
-            reference = FirebaseDatabase.getInstance()
-                .reference
-                .child("Users")
-                .child(dUsername)
+            if (dUsername.isEmpty()) {
+                btnSignIn.isEnabled = true
+                btnSignIn.setText("SIGN IN")
+                Toast.makeText(this@SignInActivity, "username kosong", Toast.LENGTH_SHORT).show()
+            } else {
+                if (dPassword.isEmpty()) {
+                    btnSignIn.isEnabled = true
+                    btnSignIn.setText("SIGN IN")
+                    Toast.makeText(this@SignInActivity, "Password kosong", Toast.LENGTH_SHORT).show()
+                } else {
+                    reference = FirebaseDatabase.getInstance()
+                        .reference
+                        .child("Users")
+                        .child(dUsername)
 
-            reference.addListenerForSingleValueEvent(object: ValueEventListener{
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    if(dataSnapshot.exists() && dUsername != ""){
+                    reference.addListenerForSingleValueEvent(object: ValueEventListener{
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            if(dataSnapshot.exists() && dUsername != ""){
 
 //                        Toast.makeText(this@SignInActivity, "Username Ditemukan", Toast.LENGTH_SHORT).show()
-                        //Ambil data dari firebase (password)
-                        val passwordFromFirebase: String = dataSnapshot.child("password").value.toString()
+                                //Ambil data dari firebase (password)
+                                val passwordFromFirebase: String = dataSnapshot.child("password").value.toString()
 
-                        //validasi password firebase
-                        if(dPassword == passwordFromFirebase){
+                                //validasi password firebase
+                                if(dPassword == passwordFromFirebase){
 
-                            //sharedPReference Username to local
-                            //menyimpan kepada lokal storage/smartphone
-                            val sharedPreferences: SharedPreferences = getSharedPreferences(USERNAME_KEY, Context.MODE_PRIVATE)
-                            val editor: SharedPreferences.Editor = sharedPreferences.edit()
-                            editor.putString(username_key, dUsername).apply()
+                                    //sharedPReference Username to local
+                                    //menyimpan kepada lokal storage/smartphone
+                                    val sharedPreferences: SharedPreferences = getSharedPreferences(USERNAME_KEY, Context.MODE_PRIVATE)
+                                    val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                                    editor.putString(username_key, dUsername).apply()
 
-                            //berpindah activity
-                            val gotoHomeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
-                            startActivity(gotoHomeIntent)
-                        } else {
-                            btnSignIn.isEnabled = true
-                            btnSignIn.setText("SIGN IN")
-                            Toast.makeText(this@SignInActivity, "Password Salah", Toast.LENGTH_SHORT).show()
+                                    //berpindah activity
+                                    val gotoHomeIntent = Intent(this@SignInActivity, HomeActivity::class.java)
+                                    startActivity(gotoHomeIntent)
+                                } else {
+                                    btnSignIn.isEnabled = true
+                                    btnSignIn.setText("SIGN IN")
+                                    Toast.makeText(this@SignInActivity, "Password Salah", Toast.LENGTH_SHORT).show()
+                                }
+
+                            } else {
+                                btnSignIn.isEnabled = true
+                                btnSignIn.setText("SIGN IN")
+                                Toast.makeText(this@SignInActivity, "Username atau Password Salah", Toast.LENGTH_SHORT).show()
+                            }
                         }
 
-                    } else {
-                        btnSignIn.isEnabled = true
-                        btnSignIn.setText("SIGN IN")
-                        Toast.makeText(this@SignInActivity, "Username atau Password Salah", Toast.LENGTH_SHORT).show()
-                    }
-                }
+                        override fun onCancelled(databaseError: DatabaseError) {
 
-                override fun onCancelled(databaseError: DatabaseError) {
+                        }
+                    })
 
                 }
-            })
+            }
 
         })
     }

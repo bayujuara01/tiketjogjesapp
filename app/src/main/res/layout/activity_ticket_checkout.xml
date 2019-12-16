@@ -92,19 +92,18 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_photo_spot_ticket"
+                    android:id="@+id/nama_wisata"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="Menara Pisa"
                     android:textColor="@color/blackPrimary"
                     android:textSize="14sp" />
 
                 <TextView
+                    android:id="@+id/lokasi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_light"
-                    android:text="Pisa City, Italy"
                     android:textColor="@color/grayPrimary"
                     android:textSize="12sp" />
 
@@ -145,13 +144,12 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tv_short_desc"
+            android:id="@+id/ketentuan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/montserrat_light"
             android:lineSpacingExtra="8dp"
-            android:text="Amount of tickets"
             android:textColor="@color/grayPrimary"
             android:textSize="18sp" />
     </LinearLayout>
@@ -204,7 +202,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginTop="4dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Rp 1000K"
+                android:text="Rp 0K"
                 android:textColor="@color/bluePrimary"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -237,7 +235,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="Rp 150K"
+                android:text="Rp 0K"
                 android:textColor="@color/greenPrimary"
                 android:textSize="32sp" />
         </LinearLayout>
@@ -250,38 +248,70 @@
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_buy_ticket_ok"
-        android:layout_width="250dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_btn_green_primary"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="Buy Ticket"
-        android:textColor="@color/whitePrimary"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
     <LinearLayout
-        android:id="@+id/btn_back"
-        android:layout_width="90dp"
-        android:layout_height="55dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_layout_white"
-        android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toStartOf="@+id/btn_buy_ticket_ok"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_back" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/btn_back"
+                android:layout_width="90dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_layout_white"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/btn_buy_ticket_ok"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_back" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/btn_buy_ticket_ok"
+                android:layout_width="250dp"
+                android:layout_height="55dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/bg_btn_green_primary"
+                android:fontFamily="@font/montserrat_medium"
+                android:text="Buy Ticket"
+                android:textColor="@color/whitePrimary"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
     <ImageView
         android:id="@+id/notice_uang"

@@ -74,6 +74,7 @@ class TicketDetailActivity : AppCompatActivity() {
 
         btnBuyTicket.setOnClickListener {
             val ticketCheckoutIntent = Intent(this@TicketDetailActivity, TicketCheckoutActivity::class.java)
+            ticketCheckoutIntent.putExtra(TicketCheckoutActivity.JENIS_WISATA, jenisTiket)
             startActivity(ticketCheckoutIntent)
         }
 
