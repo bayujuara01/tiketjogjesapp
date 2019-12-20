@@ -95,6 +95,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/xnama_lengkap"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/bg_input_edit"
@@ -123,6 +124,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/xbio"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/bg_input_edit"
@@ -151,6 +153,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/xusername"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/bg_input_edit"
@@ -179,11 +182,12 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/xpassword"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/bg_input_edit"
                         android:fontFamily="@font/montserrat_medium"
-                        android:inputType="textPassword"
+                        android:inputType="text"
                         android:lines="1"
                         android:paddingLeft="12dp"
                         android:textColor="@color/blackPrimary" />
@@ -206,6 +210,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/xemail"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:background="@drawable/bg_input_edit"
@@ -238,12 +243,13 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="182dp"
                 android:layout_marginEnd="8dp"
-                android:src="@drawable/pic_dummy_angga"
+                android:src="@drawable/icon_nopic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/view2" />
 
             <Button
+                android:id="@+id/btn_add_new_photo"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginTop="90dp"
@@ -257,14 +263,14 @@
                 app:layout_constraintTop_toTopOf="@+id/linearLayout" />
 
             <Button
-                android:id="@+id/btn_continue"
+                android:id="@+id/btn_save"
                 android:layout_width="250dp"
                 android:layout_height="55dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="24dp"
                 android:background="@drawable/bg_btn_blue_primary"
                 android:fontFamily="@font/montserrat_medium"
-                android:text="@string/continue_label"
+                android:text="SAVE"
                 android:textColor="@color/whitePrimary"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -279,7 +285,7 @@
                 android:background="@drawable/bg_layout_white"
                 android:gravity="center"
                 android:orientation="vertical"
-                app:layout_constraintEnd_toStartOf="@+id/btn_continue"
+                app:layout_constraintEnd_toStartOf="@+id/btn_save"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
                 <ImageView
