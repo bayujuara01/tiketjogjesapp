@@ -100,7 +100,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id){
             btnTicketPisa.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Pisa")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Hutan")
                 startActivity(gotoTicketIntent)
             }
             btnTicketCandi.id -> {
@@ -110,22 +110,22 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             }
             btnTicketMonas.id ->{
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Monas")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Benteng")
                 startActivity(gotoTicketIntent)
             }
             btnTicketPagoda.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Pagoda")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Merapi")
                 startActivity(gotoTicketIntent)
             }
             btnTicketSphinx.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Sphinx")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Pantai")
                 startActivity(gotoTicketIntent)
             }
             btnTicketTorri.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Torri")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Jalan")
                 startActivity(gotoTicketIntent)
             }
         }
