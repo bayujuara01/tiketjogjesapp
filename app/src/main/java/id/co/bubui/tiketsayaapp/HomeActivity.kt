@@ -100,34 +100,34 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         when(v?.id){
             btnTicketPisa.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Hutan")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Hutan Pinus")
                 startActivity(gotoTicketIntent)
             }
             btnTicketCandi.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Candi")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Candi Ijo")
                 startActivity(gotoTicketIntent)
             }
 
             //tes
             btnTicketMonas.id ->{
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Benteng")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Benteng Vredeburg")
                 startActivity(gotoTicketIntent)
             }
             btnTicketPagoda.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Merapi")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Gunung Merapi")
                 startActivity(gotoTicketIntent)
             }
             btnTicketSphinx.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Pantai")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Pantai Sedahan")
                 startActivity(gotoTicketIntent)
             }
             btnTicketTorri.id -> {
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Jalan")
+                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Kebun Binatang")
                 startActivity(gotoTicketIntent)
             }
         }
