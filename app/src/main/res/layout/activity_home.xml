@@ -192,14 +192,14 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/jalan" />
+                            android:src="@drawable/taman" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Jalan"
+                            android:text="Taman"
                             android:textColor="@color/blackPrimary"
                             android:textSize="16sp" />
 
@@ -216,14 +216,14 @@
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:src="@drawable/merapi" />
+                            android:src="@drawable/gua" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Merapi"
+                            android:text="Gua"
                             android:textColor="@color/blackPrimary"
                             android:textSize="16sp" />
 
@@ -303,7 +303,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
                             android:fontFamily="@font/montserrat_medium"
-                            android:text="Benteng"
+                            android:text="Bangunan Bersejarah"
                             android:textColor="@color/blackPrimary"
                             android:textSize="16sp" />
 
@@ -365,7 +365,7 @@
                         android:layout_width="227dp"
                         android:layout_height="98dp"
                         android:layout_marginRight="24dp"
-                        android:src="@drawable/item_two" />
+                        android:src="@drawable/item_one" />
 
                 </LinearLayout>
 

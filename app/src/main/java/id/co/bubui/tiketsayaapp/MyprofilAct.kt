@@ -24,13 +24,12 @@ import com.squareup.picasso.Picasso
     private lateinit var photo_profile : ImageView
     private lateinit var nama_lengkap : TextView
     private lateinit var myticket_place : RecyclerView
+     private var myticketlist : ArrayList<MyTicket> = arrayListOf()
+
+     private lateinit var ticketAdapter: TicketAdapter
 
     private lateinit var reference : DatabaseReference
      private lateinit var reference2 : DatabaseReference
-
-    private var myticketlist : ArrayList<MyTicket> = arrayListOf()
-
-    private lateinit var ticketAdapter: TicketAdapter
 
     private var USERNAME_KEY = "username_key"
     private var username_key = ""
@@ -48,8 +47,25 @@ import com.squareup.picasso.Picasso
         btn_back_home = findViewById(R.id.btn_back_home)
         photo_profile = findViewById(R.id.photo_profile)
         nama_lengkap = findViewById(R.id.nama_lengkap)
+
         myticket_place = findViewById(R.id.myticket_place)
          myticket_place.layoutManager = LinearLayoutManager(this)
+         reference2 = FirebaseDatabase.getInstance().reference.child("MyTickets").child(username_key_new)
+         reference2.addListenerForSingleValueEvent(object : ValueEventListener {
+             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                 for (datasnapshot1 : DataSnapshot in dataSnapshot.children) {
+                     var p : MyTicket = datasnapshot1.getValue(MyTicket::class.java) as MyTicket
+                     myticketlist.add(p)
+                 }
+                 ticketAdapter = TicketAdapter(myticketlist)
+                 myticket_place.adapter = ticketAdapter
+             }
+
+             override fun onCancelled(databaseError: DatabaseError) {
+
+             }
+         })
+
 
         reference = FirebaseDatabase.getInstance().reference.child("Users").child(username_key_new)
         val postListener = object : ValueEventListener {
@@ -72,21 +88,7 @@ import com.squareup.picasso.Picasso
             startActivity(gotoeditprofile)
         }
 
-        reference2 = FirebaseDatabase.getInstance().reference.child("MyTickets").child(username_key_new)
-         reference2.addListenerForSingleValueEvent(object : ValueEventListener {
-             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (datasnapshot1 : DataSnapshot in dataSnapshot.children) {
-                    var p : MyTicket = datasnapshot1.getValue(MyTicket::class.java) as MyTicket
-                    myticketlist.add(p)
-                }
-                 ticketAdapter = TicketAdapter(myticketlist)
-                 myticket_place.adapter = ticketAdapter
-             }
 
-             override fun onCancelled(databaseError: DatabaseError) {
-
-             }
-         })
 
         btn_signout.setOnClickListener {
             val sharedPreferences: SharedPreferences = getSharedPreferences(USERNAME_KEY, Context.MODE_PRIVATE)
