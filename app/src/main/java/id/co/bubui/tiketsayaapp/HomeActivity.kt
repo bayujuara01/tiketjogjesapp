@@ -108,6 +108,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Candi")
                 startActivity(gotoTicketIntent)
             }
+
+            //tes
             btnTicketMonas.id ->{
                 val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
                 gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Benteng")
