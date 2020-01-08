@@ -99,35 +99,35 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(v: View?) {
         when(v?.id){
             btnTicketPisa.id -> {
-                val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Hutan Pinus")
+                val gotoTicketIntent = Intent(this, WisataListAct::class.java)
+                gotoTicketIntent.putExtra(WisataListAct.JENIS_WISATA, "Hutan")
                 startActivity(gotoTicketIntent)
             }
             btnTicketCandi.id -> {
-                val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Candi Ijo")
+                val gotoTicketIntent = Intent(this, WisataListAct::class.java)
+                gotoTicketIntent.putExtra(WisataListAct.JENIS_WISATA, "Candi")
                 startActivity(gotoTicketIntent)
             }
 
             //tes
             btnTicketMonas.id ->{
-                val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Benteng Vredeburg")
+                val gotoTicketIntent = Intent(this, WisataListAct::class.java)
+                gotoTicketIntent.putExtra(WisataListAct.JENIS_WISATA, "Bangunan Bersejarah")
                 startActivity(gotoTicketIntent)
             }
             btnTicketPagoda.id -> {
-                val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Gunung Merapi")
+                val gotoTicketIntent = Intent(this, WisataListAct::class.java)
+                gotoTicketIntent.putExtra(WisataListAct.JENIS_WISATA, "Gua")
                 startActivity(gotoTicketIntent)
             }
             btnTicketSphinx.id -> {
-                val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Pantai Sedahan")
+                val gotoTicketIntent = Intent(this, WisataListAct::class.java)
+                gotoTicketIntent.putExtra(WisataListAct.JENIS_WISATA, "Pantai")
                 startActivity(gotoTicketIntent)
             }
             btnTicketTorri.id -> {
-                val gotoTicketIntent = Intent(this, TicketDetailActivity::class.java)
-                gotoTicketIntent.putExtra(TicketDetailActivity.JENIS_WISATA, "Kebun Binatang")
+                val gotoTicketIntent = Intent(this, WisataListAct::class.java)
+                gotoTicketIntent.putExtra(WisataListAct.JENIS_WISATA, "Taman")
                 startActivity(gotoTicketIntent)
             }
         }

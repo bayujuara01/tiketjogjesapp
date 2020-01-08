@@ -18,7 +18,7 @@ import kotlin.random.Random
 class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
-        const val JENIS_WISATA = "jenis_wisata"
+        const val JENIS_WISATA = "nama_wisata"
     }
 
     private lateinit var btnTicketPlus: Button
@@ -43,6 +43,8 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
     private var totalHarga : Int = 0
     private var hargaTiket : Int = 0
     private var sisa_balance : Int = 0
+    private var order_id : String = ""
+
     private var date_wisata = ""
     private var time_wisata = ""
     private var USERNAME_KEY = "username_key"
@@ -56,6 +58,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         getUsernameLocal()
 
         val mBundle: Bundle? = intent.extras
+        val kategori: String? = mBundle?.getString("jenis_wisata")
         val jenisTiket: String? = mBundle?.getString(JENIS_WISATA)
 
         btnTicketPlus = findViewById(R.id.btn_ticket_plus)
@@ -105,6 +108,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         reference = FirebaseDatabase.getInstance()
             .reference
             .child("Wisata")
+            .child(WisataListAct.nama_wisata)
             .child(jenisTiket.toString())
 
         reference.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -141,13 +145,16 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
             reference3.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    reference3.ref.child("id_tiket").setValue(nama_wisata.text.toString() + nomor_transaksi)
+                    order_id = nama_wisata.text.toString() + nomor_transaksi
+                    reference3.ref.child("id_tiket").setValue(order_id)
                     reference3.ref.child("nama_wisata").setValue(nama_wisata.text.toString())
                     reference3.ref.child("lokasi").setValue(lokasi.text.toString())
                     reference3.ref.child("ketentuan").setValue(ketentuan.text.toString())
                     reference3.ref.child("jumlah_tiket").setValue(ticketAmount.toString())
                     reference3.ref.child("date_wisata").setValue(date_wisata)
                     reference3.ref.child("time_wisata").setValue(time_wisata)
+                    reference3.ref.child("total_harga").setValue(totalHarga)
+                    reference3.ref.child("kategori").setValue(WisataListAct.nama_wisata)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {

@@ -9,28 +9,27 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
-class TicketAdapter(private val myTicket : ArrayList<MyTicket>) : RecyclerView.Adapter<TicketAdapter.MyViewHolder>() {
+class WisataListAdapter(private val WisataList : ArrayList<WisataList>) : RecyclerView.Adapter<WisataListAdapter.MyViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_myticket, parent, false))
+        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_wisata, parent, false))
     }
 
     override fun getItemCount(): Int {
-        return myTicket.size
+        return WisataList.size
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val tiket = myTicket[position]
-        var order_id = tiket.id_tiket
+        val tiket = WisataList[position]
         holder.xnama_wisata.text = tiket.nama_wisata
         holder.xlokasi.text = tiket.lokasi
-        holder.xjumlah_tiket.text = tiket.jumlah_tiket + " Tiket"
+        holder.xharga.text = tiket.harga_tiget.toString()
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             val context : Context = holder.itemView.context
-            val gotomyticketdetailIntent = Intent(context, MyTicketDetailAct::class.java)
-            gotomyticketdetailIntent.putExtra("order_id", order_id)
-            context.startActivity(gotomyticketdetailIntent)
+            val gotomyticketcheckoutIntent = Intent(context, TicketCheckoutActivity::class.java)
+            gotomyticketcheckoutIntent.putExtra("nama_wisata", holder.xnama_wisata.text.toString())
+            context.startActivity(gotomyticketcheckoutIntent)
         })
     }
 
@@ -38,7 +37,7 @@ class TicketAdapter(private val myTicket : ArrayList<MyTicket>) : RecyclerView.A
 
         var xnama_wisata : TextView = itemView.findViewById(R.id.xnama_wisata)
         var xlokasi : TextView = itemView.findViewById(R.id.xlokasi)
-        var xjumlah_tiket : TextView = itemView.findViewById(R.id.xjumlah_tiket)
+        var xharga : TextView = itemView.findViewById(R.id.xharga)
 
     }
 

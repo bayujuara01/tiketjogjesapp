@@ -1,8 +1,7 @@
 package id.co.bubui.tiketsayaapp
 
-class MyTicket {
+class WisataList {
     var nama_wisata = ""
     var lokasi = ""
-    var jumlah_tiket = ""
-    var id_tiket = ""
+    var harga_tiget = 0
 }
