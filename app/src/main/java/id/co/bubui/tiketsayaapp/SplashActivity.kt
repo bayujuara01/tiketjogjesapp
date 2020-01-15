@@ -51,7 +51,7 @@ class SplashActivity : AppCompatActivity() {
                 intent = Intent(this, GetStartedActivity::class.java)
                 startActivity(intent)
                 finish()
-            }, 3000) // 2000 Millis -> 2 Detik
+            }, 2000) // 2000 Millis -> 2 Detik
         } else {
 
             // Membuat handler
@@ -61,7 +61,7 @@ class SplashActivity : AppCompatActivity() {
                 intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent)
                 finish()
-            }, 3000) // 2000 Millis -> 2 Detik
+            }, 2000) // 2000 Millis -> 2 Detik
         }
     }
 }

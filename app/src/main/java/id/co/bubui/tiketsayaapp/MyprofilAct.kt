@@ -24,12 +24,12 @@ import com.squareup.picasso.Picasso
     private lateinit var photo_profile : ImageView
     private lateinit var nama_lengkap : TextView
     private lateinit var myticket_place : RecyclerView
-     private var myticketlist : ArrayList<MyTicket> = arrayListOf()
+    private var myticketlist : ArrayList<MyTicket> = arrayListOf()
 
-     private lateinit var ticketAdapter: TicketAdapter
+    private lateinit var ticketAdapter: TicketAdapter
 
     private lateinit var reference : DatabaseReference
-     private lateinit var reference2 : DatabaseReference
+    private lateinit var reference2 : DatabaseReference
 
     private var USERNAME_KEY = "username_key"
     private var username_key = ""
@@ -53,9 +53,10 @@ import com.squareup.picasso.Picasso
          reference2 = FirebaseDatabase.getInstance().reference.child("MyTickets").child(username_key_new)
          reference2.addListenerForSingleValueEvent(object : ValueEventListener {
              override fun onDataChange(dataSnapshot: DataSnapshot) {
-                 for (datasnapshot1 : DataSnapshot in dataSnapshot.children) {
-                     var p : MyTicket = datasnapshot1.getValue(MyTicket::class.java) as MyTicket
-                     myticketlist.add(p)
+                 for (dataSnapshotTicket : DataSnapshot in dataSnapshot.children) {
+                     var myTicket : MyTicket = dataSnapshotTicket.getValue(MyTicket::class.java) as MyTicket
+                     myticketlist.add(myTicket)
+
                  }
                  ticketAdapter = TicketAdapter(myticketlist)
                  myticket_place.adapter = ticketAdapter

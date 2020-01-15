@@ -5,4 +5,6 @@ class MyTicket {
     var lokasi = ""
     var jumlah_tiket = ""
     var id_tiket = ""
+    var payment_status = ""
+    var url = ""
 }

@@ -1,18 +1,27 @@
 package id.co.bubui.tiketsayaapp
 
+import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.common.Priority
+import com.androidnetworking.error.ANError
+import com.androidnetworking.interfaces.JSONObjectRequestListener
 import com.google.firebase.database.*
+import com.google.gson.JsonObject
 import com.squareup.picasso.Picasso
+import org.json.JSONArray
+import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.random.Random
 
 class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
@@ -32,6 +41,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var nama_wisata : TextView
     private lateinit var lokasi : TextView
     private lateinit var ketentuan : TextView
+    private lateinit var edtDate: EditText
 
     private lateinit var reference: DatabaseReference
     private lateinit var reference2 : DatabaseReference
@@ -51,6 +61,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
     private var username_key = ""
     private var username_key_new = ""
     private var nomor_transaksi = Random.nextInt()
+    private var calendar = Calendar.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -70,6 +81,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         nama_wisata = findViewById(R.id.nama_wisata)
         lokasi = findViewById(R.id.lokasi)
         ketentuan = findViewById(R.id.ketentuan)
+        edtDate = findViewById(R.id.edt_date_ticket)
 
         btnBack = findViewById(R.id.btn_back)
         btnBuyTicket = findViewById(R.id.btn_buy_ticket_ok)
@@ -79,6 +91,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         btnTicketPlus.setOnClickListener(this)
         btnTicketMinus.setOnClickListener(this)
         btnBack.setOnClickListener(this)
+
 
         tvTicketAmount.text = ticketAmount.toString()
 
@@ -136,22 +149,25 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
         //menyimpan data user ke firebase dan membuat tabel baru (MyTickets)
 
-        btnBuyTicket.setOnClickListener(View.OnClickListener {
+        btnBuyTicket.setOnClickListener {
+            order_id = nama_wisata.text.toString() + nomor_transaksi
             reference3 = FirebaseDatabase.getInstance()
-                .reference
-                .child("MyTickets")
-                .child(username_key_new)
-                .child(nama_wisata.text.toString() + nomor_transaksi)
+                    .reference
+                    .child("MyTickets")
+                    .child(username_key_new)
+                    .child(order_id)
+
+
 
             reference3.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    order_id = nama_wisata.text.toString() + nomor_transaksi
+
                     reference3.ref.child("id_tiket").setValue(order_id)
                     reference3.ref.child("nama_wisata").setValue(nama_wisata.text.toString())
                     reference3.ref.child("lokasi").setValue(lokasi.text.toString())
                     reference3.ref.child("ketentuan").setValue(ketentuan.text.toString())
                     reference3.ref.child("jumlah_tiket").setValue(ticketAmount.toString())
-                    reference3.ref.child("date_wisata").setValue(date_wisata)
+                    reference3.ref.child("date_wisata").setValue(edtDate.text.toString())
                     reference3.ref.child("time_wisata").setValue(time_wisata)
                     reference3.ref.child("total_harga").setValue(totalHarga)
                     reference3.ref.child("kategori").setValue(WisataListAct.nama_wisata)
@@ -163,9 +179,9 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
             })
 
             reference4 = FirebaseDatabase.getInstance()
-                .reference
-                .child("Users")
-                .child(username_key_new)
+                    .reference
+                    .child("Users")
+                    .child(username_key_new)
             reference4.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     sisa_balance = myBalance - totalHarga
@@ -177,11 +193,97 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
                 }
             })
 
+            var random = Random.nextInt(999, 9999999)
 
-            intent = Intent(this, SuccessBuyTicketAct::class.java)
-            startActivity(intent)
-        })
+            /*Make JSON*/
+            var dataPaymentJson: JSONObject = JSONObject()
 
+            var dataPaymentTransaction: JSONObject = JSONObject()
+            dataPaymentTransaction.put("order_id", order_id)
+            dataPaymentTransaction.put("gross_amount", totalHarga)
+
+            var dataPaymentDetailTransaction: JSONObject = JSONObject()
+            dataPaymentDetailTransaction.put("id", order_id)
+            dataPaymentDetailTransaction.put("price", totalHarga)
+            dataPaymentDetailTransaction.put("quantity", 1)
+            dataPaymentDetailTransaction.put("name", "Tiket")
+
+            var dataPaymentSecureCard: JSONObject = JSONObject()
+            dataPaymentSecureCard.put("secure", true)
+
+            var dataPaymentDetailArray: JSONArray = JSONArray()
+            dataPaymentDetailArray.put(dataPaymentDetailTransaction)
+
+            dataPaymentJson.put("transaction_details", dataPaymentTransaction)
+            dataPaymentJson.put("credit_card", dataPaymentSecureCard)
+            dataPaymentJson.put("item_details" ,dataPaymentDetailArray)
+
+            /*Get from Midtrans*/
+            val loading = ProgressDialog(this@TicketCheckoutActivity)
+            loading.setTitle("Please Wait...")
+            loading.show()
+
+            AndroidNetworking.post(MidtransService.SERVER_URL)
+                    .addHeaders("Authorization", MidtransService.SERVER_KEY)
+                    .addJSONObjectBody(dataPaymentJson)
+                    .setPriority(Priority.HIGH)
+                    .build()
+                    .getAsJSONObject(object: JSONObjectRequestListener {
+                        override fun onResponse(response: JSONObject?) {
+
+                            Toast.makeText(this@TicketCheckoutActivity, "URL : ${response?.getString("redirect_url")}", Toast.LENGTH_SHORT).show()
+                            //add to database
+                            reference3.addListenerForSingleValueEvent(object: ValueEventListener {
+                                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                    reference3.ref.child("url").setValue(response?.getString("redirect_url"))
+                                    loading.dismiss()
+
+                                    val intentPayment = Intent(this@TicketCheckoutActivity, PaymentWebViewActivity::class.java)
+                                    intentPayment.putExtra(PaymentWebViewActivity.URL_KEY, response?.getString("redirect_url"))
+                                    startActivity(intentPayment)
+                                }
+
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    loading.dismiss()
+                                }
+                            })
+                        }
+
+                        override fun onError(anError: ANError?) {
+                            loading.dismiss()
+                            Toast.makeText(this@TicketCheckoutActivity, "Error : ${anError?.errorDetail} : ${anError?.errorBody} : ${anError?.response.toString()}", Toast.LENGTH_LONG).show()
+                        }
+
+                    })
+
+//            intent = Intent(this, SuccessBuyTicketAct::class.java)
+//            startActivity(intent)
+//            val intentPayment = Intent(this, PaymentWebViewActivity::class.java)
+//            startActivity(intentPayment)
+        }
+
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            calendar.set(Calendar.YEAR, year)
+            calendar.set(Calendar.MONTH, monthOfYear)
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+            updateDateInView()
+        }
+
+        edtDate.setOnClickListener {
+            DatePickerDialog(this@TicketCheckoutActivity, dateSetListener,
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)).show()
+        }
+
+    }
+
+    private fun updateDateInView() {
+        val myFormat = "dd MMMM, yyyy"
+        val sdf = SimpleDateFormat(myFormat, Locale.US)
+
+        edtDate.setText(sdf.format(calendar.time))
     }
 
     override fun onClick(v: View?) {
