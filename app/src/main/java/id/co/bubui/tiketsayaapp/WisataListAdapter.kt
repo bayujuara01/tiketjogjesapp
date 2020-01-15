@@ -27,8 +27,9 @@ class WisataListAdapter(private val WisataList : ArrayList<WisataList>) : Recycl
 
         holder.itemView.setOnClickListener(View.OnClickListener {
             val context : Context = holder.itemView.context
-            val gotomyticketcheckoutIntent = Intent(context, TicketCheckoutActivity::class.java)
+            val gotomyticketcheckoutIntent = Intent(context, TicketDetailActivity::class.java)
             gotomyticketcheckoutIntent.putExtra("nama_wisata", holder.xnama_wisata.text.toString())
+            gotomyticketcheckoutIntent.putExtra(TicketDetailActivity.JENIS_WISATA, WisataListAct.nama_wisata)
             context.startActivity(gotomyticketcheckoutIntent)
         })
     }

@@ -1,9 +1,11 @@
 package id.co.bubui.tiketsayaapp
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +18,7 @@ class WisataListAct : AppCompatActivity() {
 
     private lateinit var wisataAdapter: WisataListAdapter
     private lateinit var nama_kategori: TextView
+    private lateinit var btn_back_home : Button
 
     private lateinit var reference2 : DatabaseReference
 
@@ -29,6 +32,7 @@ class WisataListAct : AppCompatActivity() {
         wisata_place = findViewById(R.id.wisata_place)
         wisata_place.layoutManager = LinearLayoutManager(this)
         nama_kategori = findViewById(R.id.nama_kategori)
+        btn_back_home = findViewById(R.id.btn_back_home)
 
         val mBundle: Bundle? = intent.extras
         val jenis_wisata_baru: String? = mBundle?.getString(JENIS_WISATA)
@@ -53,6 +57,11 @@ class WisataListAct : AppCompatActivity() {
 
             }
         })
+
+        btn_back_home.setOnClickListener{
+            val backk = Intent(this,HomeActivity::class.java)
+            startActivity(backk)
+        }
 
     }
 
