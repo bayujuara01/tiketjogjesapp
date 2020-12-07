@@ -28,6 +28,8 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
     companion object {
         const val JENIS_WISATA = "nama_wisata"
+        var nama_kategori = ""
+        var nama_wisata_baru = ""
     }
 
     private lateinit var btnTicketPlus: Button
@@ -71,6 +73,8 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         val mBundle: Bundle? = intent.extras
         val kategori: String? = mBundle?.getString("jenis_wisata")
         val jenisTiket: String? = mBundle?.getString(JENIS_WISATA)
+        nama_kategori = kategori.toString()
+        nama_wisata_baru = jenisTiket.toString()
 
         btnTicketPlus = findViewById(R.id.btn_ticket_plus)
         btnTicketMinus = findViewById(R.id.btn_ticket_minus)
@@ -97,7 +101,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
 
         btnTicketMinus.animate().alpha(0f).setDuration(300).start()
-        btnBuyTicket.isEnabled = false
+        //btnBuyTicket.isEnabled = false
         notice_uang.visibility = View.GONE
 
         //mengambil user balance dari firebase
@@ -121,7 +125,7 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
         reference = FirebaseDatabase.getInstance()
             .reference
             .child("Wisata")
-            .child(WisataListAct.nama_wisata)
+            .child(kategori.toString())
             .child(jenisTiket.toString())
 
         reference.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -200,11 +204,11 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
             var dataPaymentTransaction: JSONObject = JSONObject()
             dataPaymentTransaction.put("order_id", order_id)
-            dataPaymentTransaction.put("gross_amount", totalHarga)
+            dataPaymentTransaction.put("gross_amount", totalHarga*1000)
 
             var dataPaymentDetailTransaction: JSONObject = JSONObject()
             dataPaymentDetailTransaction.put("id", order_id)
-            dataPaymentDetailTransaction.put("price", totalHarga)
+            dataPaymentDetailTransaction.put("price", totalHarga*1000)
             dataPaymentDetailTransaction.put("quantity", 1)
             dataPaymentDetailTransaction.put("name", "Tiket")
 
@@ -330,6 +334,8 @@ class TicketCheckoutActivity : AppCompatActivity(), View.OnClickListener {
 
             btnBack.id -> {
                 val kembaliIntent = Intent(this, TicketDetailActivity::class.java)
+                kembaliIntent.putExtra("jenis_wisata", nama_kategori)
+                kembaliIntent.putExtra("nama_wisata", nama_wisata_baru)
                 startActivity(kembaliIntent)
             }
         }

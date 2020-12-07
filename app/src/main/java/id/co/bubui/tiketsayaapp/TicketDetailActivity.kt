@@ -31,8 +31,9 @@ class TicketDetailActivity : AppCompatActivity() {
 
         val mBundle: Bundle? = intent.extras
         val jenisTiket: String? = mBundle?.getString(JENIS_WISATA)
+        val namawisata: String? = mBundle?.getString("nama_wisata")
 
-        Toast.makeText(this, jenisTiket, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, namawisata, Toast.LENGTH_SHORT).show()
 
         btnBuyTicket = findViewById(R.id.btn_buy_ticket)
         tvPhotoSpot = findViewById(R.id.tv_photo_spot_ticket)
@@ -47,6 +48,7 @@ class TicketDetailActivity : AppCompatActivity() {
             .reference
             .child("Wisata")
             .child(jenisTiket.toString())
+            .child(namawisata.toString())
 
         reference.addListenerForSingleValueEvent(object : ValueEventListener{
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -74,13 +76,15 @@ class TicketDetailActivity : AppCompatActivity() {
 
         btnBuyTicket.setOnClickListener {
             val ticketCheckoutIntent = Intent(this@TicketDetailActivity, TicketCheckoutActivity::class.java)
-            ticketCheckoutIntent.putExtra(TicketCheckoutActivity.JENIS_WISATA, jenisTiket)
+            ticketCheckoutIntent.putExtra("jenis_wisata", jenisTiket)
+            ticketCheckoutIntent.putExtra(TicketCheckoutActivity.JENIS_WISATA, namawisata)
             startActivity(ticketCheckoutIntent)
         }
 
         btnback = findViewById(R.id.btn_back)
         btnback.setOnClickListener{
-            val backk = Intent(this,HomeActivity::class.java)
+            val backk = Intent(this,WisataListAct::class.java)
+            backk.putExtra("jenis_wisata", jenisTiket)
             startActivity(backk)
         }
     }
